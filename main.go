@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type node struct {
 	val   int
 	left  *node
@@ -13,9 +15,18 @@ func main() {
 	for _, value := range slice {
 		x += value
 	}
-	m := x / len(slice)
+	average := x / len(slice)
+	//fmt.Println(average)
 
-	var y int
+	slice2 := make([]int, len(slice))
 
+	for i, value := range slice {
+		ttt := value - average
+		slice2[i] = ttt
+		if ttt < 0 {
+			slice2[i] = ttt * (-1)
+		}
+	}
+	fmt.Println(slice2)
 	//root := node{}
 }
