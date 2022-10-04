@@ -9,29 +9,49 @@ type node struct {
 }
 
 func main() {
-	slice := []int{12, 2, 34, 7, 1, 65, 77, 9, 4, 3}
+	slice := []int{1, 2, 34, 7, 77, 65, 27, 22, 46, 3}
 
 	var x int
-	for _, value := range slice {
-		x += value
+	for i := range slice {
+		x += slice[i]
 	}
 	average := x / len(slice)
 
-	slice2 := make([]int, len(slice))
+	difs := make([]int, len(slice))
 
-	var j int
+	var minNum int
 
-	for i, value := range slice {
-		ttt := value - average
-		slice2[i] = ttt
-		if ttt < 0 {
-			slice2[i] = ttt * (-1)
+	for i := range slice {
+		dif := slice[i] - average
+		difs[i] = dif
+		if dif < 0 {
+			difs[i] = dif * (-1)
 		}
-		if j <= i {
-			j = i
+		if difs[minNum] >= difs[i] {
+			minNum = i
 		}
 	}
-	fmt.Println(slice2)
-	fmt.Println(j)
-	//root := node{}
+
+	fmt.Println(minNum)
+
+	root := node{}
 }
+
+//---------------------------------------------------
+//slice := []int{34, 22, 34, 7, 77, 65, 27, 22, 46, 3}
+//
+//for i, value := range slice {
+//	fmt.Println(i, value)
+//}
+//
+//println("-------------")
+//
+//for i := range slice {
+//	fmt.Println(i, slice[i])
+//}
+//
+//println("-------------")
+//
+//for i := 0; i <= len(slice); i++ {
+//	fmt.Println(i, slice[i])
+//}
