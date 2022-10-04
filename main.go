@@ -16,9 +16,10 @@ func main() {
 		x += value
 	}
 	average := x / len(slice)
-	//fmt.Println(average)
 
 	slice2 := make([]int, len(slice))
+
+	var j int
 
 	for i, value := range slice {
 		ttt := value - average
@@ -26,7 +27,11 @@ func main() {
 		if ttt < 0 {
 			slice2[i] = ttt * (-1)
 		}
+		if j <= i {
+			j = i
+		}
 	}
 	fmt.Println(slice2)
+	fmt.Println(j)
 	//root := node{}
 }
