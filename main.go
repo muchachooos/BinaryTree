@@ -9,7 +9,7 @@ type node struct {
 }
 
 func main() {
-	slice := []int{1, 2, 34, 7, 77, 65, 27, 22, 46, 3}
+	slice := []int{1, 2, 34, 7, 27, 65, 77, 22, 46, 3}
 
 	var x int
 	for i := range slice {
@@ -33,8 +33,9 @@ func main() {
 	}
 
 	fmt.Println(minNum)
+	fmt.Println(slice[minNum])
 
-	root := node{}
+	//root := node{}
 }
 
 //---------------------------------------------------
