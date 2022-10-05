@@ -36,7 +36,6 @@ func main() {
 		nil,
 	}
 	addToTree(&el1, 33)
-	fmt.Println(el1.right.val)
 }
 
 type node struct {
@@ -52,11 +51,26 @@ func addToTree(root *node, addEl int) {
 	}
 
 	if addEl < root.val {
-		root.left = &node{addEl, nil, nil}
+		if root.left == nil {
+			root.left = &node{addEl, nil, nil}
+		} else {
+			if addEl < root.left.val {
+				root.left.left = &node{addEl, nil, nil}
+			} else {
+				root.left.right = &node{addEl, nil, nil}
+			}
+		}
 	} else {
-		root.right = &node{addEl, nil, nil}
+		if root.right == nil {
+			root.right = &node{addEl, nil, nil}
+		} else {
+			if addEl > root.right.val {
+				root.right.right = &node{addEl, nil, nil}
+			} else {
+				root.right.left = &node{addEl, nil, nil}
+			}
+		}
 	}
-	addToTree()
 }
 
 //root.left.left.val = addEl
