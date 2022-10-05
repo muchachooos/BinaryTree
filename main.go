@@ -2,13 +2,8 @@ package main
 
 import "fmt"
 
-type node struct {
-	val   int
-	left  *node
-	right *node
-}
-
 func main() {
+
 	slice := []int{1, 2, 34, 7, 27, 65, 77, 22, 46, 3}
 
 	var x int
@@ -19,7 +14,6 @@ func main() {
 	average := x / len(slice)
 
 	difs := make([]int, len(slice))
-
 	var minNum int
 
 	for i := range slice {
@@ -33,27 +27,36 @@ func main() {
 		}
 	}
 
-	fmt.Println(minNum)
-	fmt.Println(slice[minNum])
+	//fmt.Println(minNum)
+	//fmt.Println(slice[minNum])
 
-	//root := node{}
+	el1 := node{
+		21,
+		nil,
+		nil,
+	}
+	addToTree(&el1, 33)
+	fmt.Println(el1.right.val)
 }
 
-//---------------------------------------------------
-//slice := []int{34, 22, 34, 7, 77, 65, 27, 22, 46, 3}
-//
-//for i, value := range slice {
-//	fmt.Println(i, value)
-//}
-//
-//println("-------------")
-//
-//for i := range slice {
-//	fmt.Println(i, slice[i])
-//}
-//
-//println("-------------")
-//
-//for i := 0; i <= len(slice); i++ {
-//	fmt.Println(i, slice[i])
-//}
+type node struct {
+	val   int
+	left  *node
+	right *node
+}
+
+func addToTree(root *node, addEl int) {
+	if root == nil {
+		fmt.Println("Ck!")
+		return
+	}
+
+	if addEl < root.val {
+		root.left = &node{addEl, nil, nil}
+	} else {
+		root.right = &node{addEl, nil, nil}
+	}
+	addToTree()
+}
+
+//root.left.left.val = addEl
