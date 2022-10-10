@@ -39,7 +39,7 @@ func main() {
 	}
 
 	for i := range testSlice {
-		addToTree(&rootElement, testSlice[i])
+		addElement(&rootElement, testSlice[i])
 	}
 }
 
@@ -50,54 +50,23 @@ type node struct {
 }
 
 func searchElement(root *node, searchVal int) bool {
-
 	if root == nil {
 		fmt.Println("Ck")
 		return false
 	}
-
-	//if searchVal != root.val {
-	//	if searchVal < root.val{
-	//		searchElement(root.left, searchVal)
-	//	} else {
-	//		searchElement(root.right, searchVal)
-	//	}
-	//}
-	//
-	//if searchVal < root.val {
-	//	if searchVal != root.val {
-	//		searchElement(root.left, searchVal)
-	//	}
-	//}
-	//
-	//if searchVal < root.val {
-	//	searchElement(root.left, searchVal)
-	//} else {
-	//	searchElement(root.right, searchVal)
-	//}
 
 	if searchVal == root.val {
 		return true
 	}
 
 	if searchVal < root.val {
-		if root.left.val == searchVal {
-			return true
-		} else {
-			searchElement(root.left, searchVal)
-		}
+		return searchElement(root.left, searchVal)
 	} else {
-		if root.right.val == searchVal {
-			return true
-		} else {
-			searchElement(root.right, searchVal)
-		}
+		return searchElement(root.right, searchVal)
 	}
-
-	return false
 }
 
-func addToTree(root *node, addVal int) {
+func addElement(root *node, addVal int) {
 	if root == nil {
 		fmt.Println("Ck")
 		return
@@ -107,13 +76,13 @@ func addToTree(root *node, addVal int) {
 		if root.left == nil {
 			root.left = &node{addVal, nil, nil}
 		} else {
-			addToTree(root.left, addVal)
+			addElement(root.left, addVal)
 		}
 	} else {
 		if root.right == nil {
 			root.right = &node{addVal, nil, nil}
 		} else {
-			addToTree(root.right, addVal)
+			addElement(root.right, addVal)
 		}
 	}
 }
