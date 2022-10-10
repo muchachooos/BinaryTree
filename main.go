@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 
 	//slice := []int{1, 2, 34, 7, 27, 65, 77, 22, 46, 3}
-
+	//
 	//var x int
 	//
 	//for i := range slice {
@@ -26,13 +26,21 @@ func main() {
 	//		minNum = i
 	//	}
 	//}
-	//
+
 	//fmt.Println(minNum)
 	//fmt.Println(slice[minNum])
 
 	testSlice := []int{3, 4, 5, 8, 19}
 
-	deleteElement()
+	rootElement := node{
+		9,
+		nil,
+		nil,
+	}
+
+	for i := range testSlice {
+		addToTree(&rootElement, testSlice[i])
+	}
 }
 
 type node struct {
@@ -41,24 +49,52 @@ type node struct {
 	right *node
 }
 
-func deleteElement(root *node, delVal int) {
-	if root != nil {
+func searchElement(root *node, searchVal int) bool {
+
+	if root == nil {
 		fmt.Println("Ck")
-		return
+		return false
 	}
 
-	if root.val != delVal {
-		if delVal < root.val {
-			if root.left.val != delVal {
-				if delVal < root.left.val {
-					deleteElement(root.left, delVal)
-				} else {
-					root = nil
-				}
-			}
+	//if searchVal != root.val {
+	//	if searchVal < root.val{
+	//		searchElement(root.left, searchVal)
+	//	} else {
+	//		searchElement(root.right, searchVal)
+	//	}
+	//}
+	//
+	//if searchVal < root.val {
+	//	if searchVal != root.val {
+	//		searchElement(root.left, searchVal)
+	//	}
+	//}
+	//
+	//if searchVal < root.val {
+	//	searchElement(root.left, searchVal)
+	//} else {
+	//	searchElement(root.right, searchVal)
+	//}
+
+	if searchVal == root.val {
+		return true
+	}
+
+	if searchVal < root.val {
+		if root.left.val == searchVal {
+			return true
+		} else {
+			searchElement(root.left, searchVal)
+		}
+	} else {
+		if root.right.val == searchVal {
+			return true
+		} else {
+			searchElement(root.right, searchVal)
 		}
 	}
 
+	return false
 }
 
 func addToTree(root *node, addVal int) {
