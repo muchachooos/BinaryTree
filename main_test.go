@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_addToEbala(t *testing.T) {
 	el1 := node{
@@ -36,6 +38,12 @@ func Test_addToEbala(t *testing.T) {
 	}
 
 	if el1.right.val != 19 {
+		t.Fail()
+	}
+
+	res := searchElement(&el1, 4)
+
+	if res == false {
 		t.Fail()
 	}
 }
