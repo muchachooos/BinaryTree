@@ -4,7 +4,8 @@ import (
 	"testing"
 )
 
-func Test_addToEbala(t *testing.T) {
+func Test_FunctionTree(t *testing.T) {
+
 	el1 := node{
 		9,
 		nil,
@@ -13,37 +14,54 @@ func Test_addToEbala(t *testing.T) {
 
 	testSlice := []int{3, 4, 5, 8, 19}
 
+	//Add function test
 	for i := range testSlice {
-		addToTree(&el1, testSlice[i])
+		addElement(&el1, testSlice[i])
 	}
 
 	if el1.val != 9 {
+		t.Log("add_1 failed")
 		t.Fail()
 	}
 
 	if el1.left.val != 3 {
+		t.Log("add_2 failed")
 		t.Fail()
 	}
 
 	if el1.left.right.val != 4 {
+		t.Log("add_3 failed")
 		t.Fail()
 	}
 
 	if el1.left.right.right.val != 5 {
+		t.Log("add_4 failed")
 		t.Fail()
 	}
 
 	if el1.left.right.right.right.val != 8 {
+		t.Log("add_5 failed")
 		t.Fail()
 	}
 
 	if el1.right.val != 19 {
+		t.Log("add_6 failed")
 		t.Fail()
 	}
 
-	res := searchElement(&el1, 4)
+	// Search function test
+	for j := range testSlice {
+		res := searchElement(&el1, testSlice[j])
+		if res == false {
+			t.Log("Search failed")
+			t.Fail()
+		}
+	}
 
-	if res == false {
+	//different value test
+	res := searchElement(&el1, 344)
+	if res == true {
+		t.Log("Search failed")
 		t.Fail()
 	}
 }
