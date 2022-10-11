@@ -40,10 +40,11 @@ func main() {
 	}
 
 	fmt.Println(searchElement(&rootElement, 4))
-	fmt.Println("-----------")
+	fmt.Println("1-----------")
 	deleteElement(&rootElement, 4)
-	fmt.Println("----------")
-	//fmt.Println(searchElement(&rootElement, 4))
+	fmt.Println("2----------")
+	fmt.Println("root", rootElement.right.left)
+	fmt.Println(searchElement(&rootElement, 4))
 }
 
 type node struct {
@@ -53,19 +54,28 @@ type node struct {
 }
 
 func deleteElement(root *node, deleteVal int) {
-	//if root == nil {
-	//	fmt.Println("Ck")
-	//}
-
+	if root == nil {
+		fmt.Println("Ck")
+		return
+	}
+	
 	if deleteVal == root.val {
 		root = nil
+		return
 	}
 
 	if deleteVal < root.val {
 		deleteElement(root.left, deleteVal)
+		if root.left.val == deleteVal {
+			root.left = nil
+		}
 	} else {
 		deleteElement(root.right, deleteVal)
+		if root.right.val == deleteVal {
+			root.right = nil
+		}
 	}
+
 }
 
 func searchElement(root *node, searchVal int) bool {
