@@ -49,6 +49,18 @@ type node struct {
 	right *node
 }
 
+func deleteElement(root *node, deleteVal int) {
+	if deleteVal == root.val {
+		
+	}
+
+	if deleteVal < root.val {
+		deleteElement(root.left, deleteVal)
+	} else {
+		deleteElement(root.right, deleteVal)
+	}
+}
+
 func searchElement(root *node, searchVal int) bool {
 	if root == nil {
 		fmt.Println("Ck")
