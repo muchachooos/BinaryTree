@@ -5,7 +5,33 @@ import "fmt"
 func main() {
 
 	//slice := []int{1, 2, 34, 7, 27, 65, 77, 22, 46, 3}
-	//
+
+	testSlice := []int{3, 4, 5, 8, 19}
+
+	rootElement := node{
+		9,
+		nil,
+		nil,
+	}
+
+	for i := range testSlice {
+		addElement(&rootElement, testSlice[i])
+	}
+
+	fmt.Println(searchElement(&rootElement, 8))
+	fmt.Println("1-----------")
+	deleteElement(&rootElement, 8)
+	fmt.Println("2----------")
+	fmt.Println(searchElement(&rootElement, 8))
+}
+
+type node struct {
+	val   int
+	left  *node
+	right *node
+}
+
+func sortSlice() {
 	//var x int
 	//
 	//for i := range slice {
@@ -26,31 +52,6 @@ func main() {
 	//		minNum = i
 	//	}
 	//}
-
-	testSlice := []int{3, 4, 5, 8, 19}
-
-	rootElement := node{
-		9,
-		nil,
-		nil,
-	}
-
-	for i := range testSlice {
-		addElement(&rootElement, testSlice[i])
-	}
-
-	fmt.Println(searchElement(&rootElement, 4))
-	fmt.Println("1-----------")
-	deleteElement(&rootElement, 4)
-	fmt.Println("2----------")
-	fmt.Println("root", rootElement.right.left)
-	fmt.Println(searchElement(&rootElement, 4))
-}
-
-type node struct {
-	val   int
-	left  *node
-	right *node
 }
 
 func deleteElement(root *node, deleteVal int) {
@@ -58,7 +59,7 @@ func deleteElement(root *node, deleteVal int) {
 		fmt.Println("Ck")
 		return
 	}
-	
+
 	if deleteVal == root.val {
 		root = nil
 		return
@@ -68,14 +69,15 @@ func deleteElement(root *node, deleteVal int) {
 		deleteElement(root.left, deleteVal)
 		if root.left.val == deleteVal {
 			root.left = nil
+			return
 		}
 	} else {
 		deleteElement(root.right, deleteVal)
 		if root.right.val == deleteVal {
 			root.right = nil
+			return
 		}
 	}
-
 }
 
 func searchElement(root *node, searchVal int) bool {
