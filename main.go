@@ -27,9 +27,6 @@ func main() {
 	//	}
 	//}
 
-	//fmt.Println(minNum)
-	//fmt.Println(slice[minNum])
-
 	testSlice := []int{3, 4, 5, 8, 19}
 
 	rootElement := node{
@@ -41,6 +38,12 @@ func main() {
 	for i := range testSlice {
 		addElement(&rootElement, testSlice[i])
 	}
+
+	fmt.Println(searchElement(&rootElement, 4))
+	fmt.Println("-----------")
+	deleteElement(&rootElement, 4)
+	fmt.Println("----------")
+	//fmt.Println(searchElement(&rootElement, 4))
 }
 
 type node struct {
@@ -50,8 +53,12 @@ type node struct {
 }
 
 func deleteElement(root *node, deleteVal int) {
+	//if root == nil {
+	//	fmt.Println("Ck")
+	//}
+
 	if deleteVal == root.val {
-		
+		root = nil
 	}
 
 	if deleteVal < root.val {
