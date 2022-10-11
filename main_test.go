@@ -64,4 +64,7 @@ func Test_FunctionTree(t *testing.T) {
 		t.Log("Search failed")
 		t.Fail()
 	}
+
+	//Delete function test
+
 }
