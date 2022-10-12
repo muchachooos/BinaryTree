@@ -6,7 +6,6 @@ import (
 
 func Test_sortSlice(t *testing.T) {
 
-	//sortSlice function test
 	testSlice := []int{3, 4, 5, 8, 9, 19}
 
 	rootValue := sortSlice(testSlice)
@@ -30,7 +29,7 @@ func Test_sortSlice(t *testing.T) {
 	}
 }
 
-func Test_FunctionTree(t *testing.T) {
+func Test_addElement(t *testing.T) {
 
 	testSlice := []int{3, 4, 5, 8, 19}
 
@@ -40,7 +39,6 @@ func Test_FunctionTree(t *testing.T) {
 		nil,
 	}
 
-	//Add function test
 	for i := range testSlice {
 		addElement(&rootElement, testSlice[i])
 	}
@@ -74,8 +72,22 @@ func Test_FunctionTree(t *testing.T) {
 		t.Log("add_6 failed")
 		t.Fail()
 	}
+}
 
-	// Search function test
+func Test_searchElement(t *testing.T) {
+
+	testSlice := []int{3, 4, 5, 8, 19}
+
+	rootElement := node{
+		9,
+		nil,
+		nil,
+	}
+
+	for i := range testSlice {
+		addElement(&rootElement, testSlice[i])
+	}
+
 	for j := range testSlice {
 		res := searchElement(&rootElement, testSlice[j])
 		if res == false {
@@ -90,8 +102,22 @@ func Test_FunctionTree(t *testing.T) {
 		t.Log("Search failed")
 		t.Fail()
 	}
+}
 
-	//Delete function test
+func Test_deleteElement(t *testing.T) {
+
+	testSlice := []int{3, 4, 5, 8, 19}
+
+	rootElement := node{
+		9,
+		nil,
+		nil,
+	}
+
+	for i := range testSlice {
+		addElement(&rootElement, testSlice[i])
+	}
+
 	deleteElement(&rootElement, 4)
 	if rootElement.left.right != nil {
 		t.Log("Delete failed")
