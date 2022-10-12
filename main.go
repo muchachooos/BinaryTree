@@ -4,25 +4,10 @@ import "fmt"
 
 func main() {
 
-	//slice := []int{1, 2, 34, 7, 27, 65, 77, 22, 46, 3}
+	slice := []int{1, 27, 34, 7, 2, 65, 77, 22, 46, 3}
 
-	testSlice := []int{3, 4, 5, 8, 19}
+	sortSlice(slice)
 
-	rootElement := node{
-		9,
-		nil,
-		nil,
-	}
-
-	for i := range testSlice {
-		addElement(&rootElement, testSlice[i])
-	}
-
-	fmt.Println(searchElement(&rootElement, 8))
-	fmt.Println("1-----------")
-	deleteElement(&rootElement, 8)
-	fmt.Println("2----------")
-	fmt.Println(searchElement(&rootElement, 8))
 }
 
 type node struct {
@@ -31,27 +16,42 @@ type node struct {
 	right *node
 }
 
-func sortSlice() {
-	//var x int
-	//
-	//for i := range slice {
-	//	x += slice[i]
-	//}
-	//average := x / len(slice)
-	//
-	//difs := make([]int, len(slice))
-	//var minNum int
-	//
-	//for i := range slice {
-	//	dif := slice[i] - average
-	//	difs[i] = dif
-	//	if dif < 0 {
-	//		difs[i] = dif * (-1)
-	//	}
-	//	if difs[minNum] >= difs[i] {
-	//		minNum = i
-	//	}
-	//}
+func sortSlice(slice []int) {
+
+	var x int
+
+	for i := range slice {
+		x += slice[i]
+	}
+	average := x / len(slice)
+
+	diffs := make([]int, len(slice))
+	var rootValue int
+
+	for i := range slice {
+		diffsVal := slice[i] - average
+		diffs[i] = diffsVal
+		if diffsVal < 0 {
+			diffs[i] = diffsVal * (-1)
+		}
+		if diffs[rootValue] >= diffs[i] {
+			rootValue = i
+		}
+	}
+
+	saveVal := slice[rootValue]
+
+	fmt.Println("pos rootValue: ", rootValue)
+	fmt.Println("val rootValue: ", slice[rootValue])
+	fmt.Println("del rootValue: ", slice)
+	
+	slice = append(slice[:rootValue], slice[rootValue+1:]...)
+
+	fmt.Println("--------")
+	fmt.Println("pos: ", rootValue)
+	fmt.Println("saveVal: ", saveVal)
+	fmt.Println("del rootValue: ", slice)
+
 }
 
 func deleteElement(root *node, deleteVal int) {
