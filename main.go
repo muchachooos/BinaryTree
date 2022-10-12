@@ -4,12 +4,12 @@ import "fmt"
 
 func main() {
 
-	slice := []int{1, 27, 34, 7, 2, 65, 77, 22, 46, 3}
+	//slice := []int{1, 27, 34, 7, 2, 65, 77, 22, 46, 3}
 
-	sortSlice(slice)
+	//rootValue := sortSlice(slice)
 
 	//rootElement := node{
-	//	,
+	//	rootValue,
 	//	nil,
 	//	nil,
 	//}
@@ -22,7 +22,7 @@ type node struct {
 	right *node
 }
 
-func sortSlice(slice []int) {
+func sortSlice(slice []int) int {
 
 	var x int
 
@@ -32,7 +32,7 @@ func sortSlice(slice []int) {
 	average := x / len(slice)
 
 	diffs := make([]int, len(slice))
-	var rootValue int
+	var number int
 
 	for i := range slice {
 		diffsVal := slice[i] - average
@@ -40,20 +40,19 @@ func sortSlice(slice []int) {
 		if diffsVal < 0 {
 			diffs[i] = diffsVal * (-1)
 		}
-		if diffs[rootValue] >= diffs[i] {
-			rootValue = i
+		if diffs[number] >= diffs[i] {
+			number = i
 		}
 	}
 
-	root := slice[rootValue]
+	slice = append(slice[:number], slice[number+1:]...)
 
-	slice = append(slice[:rootValue], slice[rootValue+1:]...)
-
+	return slice[number]
 }
 
 func addElement(root *node, addVal int) {
 	if root == nil {
-		fmt.Println("Ck")
+		fmt.Println("nilAdd")
 		return
 	}
 
@@ -74,7 +73,7 @@ func addElement(root *node, addVal int) {
 
 func searchElement(root *node, searchVal int) bool {
 	if root == nil {
-		fmt.Println("Ck")
+		fmt.Println("nilSearch")
 		return false
 	}
 
@@ -91,7 +90,7 @@ func searchElement(root *node, searchVal int) bool {
 
 func deleteElement(root *node, deleteVal int) {
 	if root == nil {
-		fmt.Println("Ck")
+		fmt.Println("nilDel")
 		return
 	}
 
