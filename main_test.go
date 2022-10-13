@@ -23,7 +23,7 @@ func Test_sortSlice(t *testing.T) {
 
 	for i := range testSlice {
 		if i == rootValue {
-			t.Log("Slice failed")
+			t.Log("Delete root failed")
 			t.Fail()
 		}
 	}
@@ -99,7 +99,7 @@ func Test_searchElement(t *testing.T) {
 	//Different value test
 	res := searchElement(&rootElement, 344)
 	if res == true {
-		t.Log("Search failed")
+		t.Log("Different value failed")
 		t.Fail()
 	}
 }
