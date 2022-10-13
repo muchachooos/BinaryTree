@@ -14,15 +14,18 @@ func main() {
 		nil,
 	}
 
-	sortSlice(slice)
-
 	for i := range slice {
-		addElement(&rootElement, i)
+		addElement(&rootElement, slice[i])
 	}
 
-	fmt.Println(searchElement(&rootElement, 9))
+	fmt.Println("add-------")
+	fmt.Println("search1-------")
+	fmt.Println(searchElement(&rootElement, 22))
+	fmt.Println("delete-------")
+	deleteElement(&rootElement, 22)
+	fmt.Println("search2-------")
+	fmt.Println(searchElement(&rootElement, 4))
 
-	//deleteElement(&rootElement, )
 }
 
 type node struct {
@@ -31,20 +34,20 @@ type node struct {
 	right *node
 }
 
-func sortSlice(slice []int) int {
+func sortSlice(FSlice []int) int {
 
 	var x int
 
-	for i := range slice {
-		x += slice[i]
+	for i := range FSlice {
+		x += FSlice[i]
 	}
-	average := x / len(slice)
+	average := x / len(FSlice)
 
-	diffs := make([]int, len(slice))
+	diffs := make([]int, len(FSlice))
 	var number int
 
-	for i := range slice {
-		diffsVal := slice[i] - average
+	for i := range FSlice {
+		diffsVal := FSlice[i] - average
 		diffs[i] = diffsVal
 		if diffsVal < 0 {
 			diffs[i] = diffsVal * (-1)
@@ -54,9 +57,9 @@ func sortSlice(slice []int) int {
 		}
 	}
 
-	slice = append(slice[:number], slice[number+1:]...)
+	FSlice = append(FSlice[:number], FSlice[number+1:]...)
 
-	return slice[number]
+	return FSlice[number]
 }
 
 func addElement(root *node, addVal int) {
