@@ -24,7 +24,7 @@ func main() {
 	fmt.Println("delete-------")
 	deleteElement(&rootElement, 22)
 	fmt.Println("search2-------")
-	fmt.Println(searchElement(&rootElement, 4))
+	fmt.Println(searchElement(&rootElement, 22))
 
 }
 
