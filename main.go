@@ -4,16 +4,25 @@ import "fmt"
 
 func main() {
 
-	//slice := []int{1, 27, 34, 7, 2, 65, 77, 22, 46, 3}
+	slice := []int{1, 27, 34, 7, 2, 65, 77, 22, 46, 3}
 
-	//rootValue := sortSlice(slice)
+	rootValue := sortSlice(slice)
 
-	//rootElement := node{
-	//	rootValue,
-	//	nil,
-	//	nil,
-	//}
+	rootElement := node{
+		rootValue,
+		nil,
+		nil,
+	}
 
+	sortSlice(slice)
+
+	for i := range slice {
+		addElement(&rootElement, i)
+	}
+
+	fmt.Println(searchElement(&rootElement, 9))
+
+	//deleteElement(&rootElement, )
 }
 
 type node struct {
