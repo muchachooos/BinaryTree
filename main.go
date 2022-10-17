@@ -9,29 +9,49 @@ func main() {
 	rootValue := sortSlice(slice)
 
 	rootElement := node{
-		rootValue,
-		nil,
-		nil,
+		val:   rootValue,
+		left:  nil,
+		right: nil,
 	}
+
+	binaryTree := newBinaryTree(&rootElement)
 
 	for i := range slice {
-		addElement(&rootElement, slice[i])
+		addElement(binaryTree.rootElement, slice[i])
 	}
 
-	fmt.Println("add-------")
-	fmt.Println("search1-------")
-	fmt.Println(searchElement(&rootElement, 22))
-	fmt.Println("delete-------")
-	deleteElement(&rootElement, 22)
-	fmt.Println("search2-------")
-	fmt.Println(searchElement(&rootElement, 22))
+	//fmt.Println("add-------")
+	//fmt.Println("search1-------")
+	//fmt.Println(searchElement(&rootElement, 22))
+	//fmt.Println("delete-------")
+	//deleteElement(&
+	//rootElement, 999)
+	//fmt.Println("search2-------")
+	//fmt.Println(searchElement(&rootElement, 22))
+}
 
+type binaryTree struct {
+	rootElement  *node
+	countOfNodes int
+	maxVal       int
+	minVal       int
+}
+
+// Конструктор
+func newBinaryTree(root *node) binaryTree {
+	return binaryTree{
+		rootElement: root,
+	}
 }
 
 type node struct {
 	val   int
 	left  *node
 	right *node
+}
+
+func (binT binaryTree) add(addVal int) {
+	addElement(binT.rootElement, addVal)
 }
 
 func sortSlice(FSlice []int) int {
